@@ -16,11 +16,11 @@ function App() {
 			<Navbar />
 			<button
 				title="To Top"
-				className="btn btn-secondary position-fixed bottom-0 end-0 mb-5 me-5 rounded-circle p-3"
+				className="btn to-top"
 				style={{ zIndex: "1000" }}
 				onClick={() => window.scrollTo(0, 0)}
 			>
-				Top
+				<i className="fa-solid fa-circle-chevron-up rounded-circle" />
 			</button>
 			<Routes>
 				{/* the final code will not pass the products to every page, but each page will call the server API */}

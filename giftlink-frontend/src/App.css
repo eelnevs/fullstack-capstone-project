@@ -187,3 +187,17 @@ body,
   color: white;
   text-decoration: none;
 }
+
+.to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0;
+  border: none;
+  font-size: 3rem;
+}
+
+.to-top:hover {
+  text-shadow: 1px 3px 5px rgba(38, 42, 49, 0.3);
+  color: #1e1f21ca;
+}
