@@ -14,7 +14,6 @@ function SearchPage() {
 		condition: "",
 		age_years: 10,
 	});
-	const [ageRange, setAgeRange] = useState();
 	const [searchResults, setSearchResults] = useState([]);
 
 	useEffect(() => {

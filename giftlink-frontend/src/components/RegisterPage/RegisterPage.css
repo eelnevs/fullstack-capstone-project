@@ -42,3 +42,17 @@ a.text-primary:hover {
 a.text-secondary:hover {
     text-decoration: underline;
 }
+
+.alert.alert-error {
+    background-color: rgba(232, 8, 8, 0.849);
+    color: aliceblue;
+    font-size: x-large;
+    text-align: center;
+    align-self: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-top: 1rem;
+}
