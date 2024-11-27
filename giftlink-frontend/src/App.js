@@ -7,19 +7,32 @@ import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import DetailsPage from "./components/DetailsPage/DetailsPage";
+import SearchPage from "./components/SearchPage/SearchPage";
 
 function App() {
 	const navigate = useNavigate();
 	return (
 		<>
 			<Navbar />
+			<button
+				title="To Top"
+				className="btn btn-secondary position-fixed bottom-0 end-0 mb-5 me-5 rounded-circle p-3"
+				style={{ zIndex: "1000" }}
+				onClick={() => window.scrollTo(0, 0)}
+			>
+				Top
+			</button>
 			<Routes>
 				{/* the final code will not pass the products to every page, but each page will call the server API */}
 				<Route path="/" element={<MainPage />} />
 				<Route path="/app" element={<MainPage />} />
 				<Route path="/app/login" element={<LoginPage />} />
 				<Route path="/app/register" element={<RegisterPage />} />
-        <Route path="/app/product/:productId" element={<DetailsPage />} />
+				<Route
+					path="/app/product/:productId"
+					element={<DetailsPage />}
+				/>
+				<Route path="/app/search" element={<SearchPage />} />
 			</Routes>
 		</>
 	);
