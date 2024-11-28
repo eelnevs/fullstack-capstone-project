@@ -19,6 +19,13 @@ function RegisterPage() {
 	const navigate = useNavigate();
 	const { setIsLoggedIn } = useAppContext();
 
+	const showError = (error) => {
+		setError(error);
+		setTimeout(() => {
+			setError('');
+		}, 3000);
+	}
+
 	// insert code here to create handleRegister function and include console.log
 	const handleRegister = async () => {
 		try {
@@ -36,19 +43,18 @@ function RegisterPage() {
 			if (!data) {
 				throw Error("Registration failed");
 			}
-			if (data.error) {
-				return setError(`Error: ${data.error}`);
-			}
 			if (data.authtoken) {
 				sessionStorage.setItem("auth-token", data.authtoken);
 				sessionStorage.setItem("name", data.firstName);
 				sessionStorage.setItem("email", data.email);
 				setIsLoggedIn(true);
 				navigate("/app");
+			} else {
+				return showError(`${data.error ?? "Registration failed"}`);
 			}
 		} catch (error) {
 			console.log("Error fetching details: " + error.message);
-			setError("Error: Cannot register user");
+			showError("Cannot register user");
 		}
 	};
 

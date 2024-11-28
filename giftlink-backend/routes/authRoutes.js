@@ -90,6 +90,7 @@ router.post(
 			const collection = db.collection("users");
 			// Task 3: Check for user credentials in database
 			const user = await collection.findOne({ email: req.body.email });
+			console.log(user);
 			if (!user) {
 				logger.error("User not found")
 				return res.status(404).send({
