@@ -9,6 +9,14 @@ const Profile = () => {
 	const [updatedDetails, setUpdatedDetails] = useState({});
 	const { setUserName } = useAppContext();
 	const [changed, setChanged] = useState("");
+	const [error, setError] = useState("");
+
+	const showError = (err) => {
+		setError(err);
+		setTimeout(() => {
+			setError("");
+		}, 3000);
+	};
 
 	const [editMode, setEditMode] = useState(false);
 	const navigate = useNavigate();
@@ -38,6 +46,7 @@ const Profile = () => {
 		} catch (error) {
 			console.error(error);
 			// Handle error case
+			showError(error);
 		}
 	};
 
@@ -96,71 +105,69 @@ const Profile = () => {
 				}, 1000);
 			} else {
 				// Handle error case
-				throw new Error("Failed to update profile");
+				const err = await response.json();
+				throw new Error(
+					`Failed to update profile${
+						err.error ? ": " + err.error : ""
+					}`
+				);
 			}
 		} catch (error) {
 			console.error(error);
 			// Handle error case
-			setChanged(error.message);
+			showError(error.message);
 		}
 	};
 
 	return (
-		<div className="profile-container">
-			{editMode ? (
-				<form onSubmit={handleSubmit}>
-					<label>
-						Email
-						<input
-							type="email"
-							name="email"
-							value={userDetails.email}
-							disabled // Disable the email field
-						/>
-					</label>
-					<label>
-						Name
-						<input
-							type="text"
-							name="name"
-							value={updatedDetails.name}
-							onChange={handleInputChange}
-						/>
-					</label>
-          <span
-						style={{
-							color: "green",
-							height: ".5cm",
-							display: "block",
-							fontStyle: "italic",
-							fontSize: "12px",
-						}}
-					>
-						{changed}
-					</span>
-					<button type="submit">Save</button>
-				</form>
-			) : (
-				<div className="profile-details">
-					<h1>Hi, {userDetails.name}</h1>
-					<p>
-						{" "}
-						<b>Email:</b> {userDetails.email}
-					</p>
-					<button onClick={handleEdit}>Edit</button>
-					<span
-						style={{
-							color: "green",
-							height: ".5cm",
-							display: "block",
-							fontStyle: "italic",
-							fontSize: "12px",
-						}}
-					>
-						{changed}
-					</span>
-				</div>
-			)}
+		<div style={{display: "flex", flexDirection: "column"}}>
+			{!!error && <div className="alert alert-error">{error}</div>}
+			<div className="container profile-container">
+				{editMode ? (
+					<form onSubmit={handleSubmit}>
+						<label>
+							Email
+							<input
+								type="email"
+								name="email"
+								value={userDetails.email}
+								disabled // Disable the email field
+							/>
+						</label>
+						<label>
+							Name
+							<input
+								type="text"
+								name="name"
+								value={updatedDetails.name}
+								onChange={handleInputChange}
+							/>
+						</label>
+
+						<button type="submit">Save</button>
+					</form>
+				) : (
+					<div className="profile-details">
+						<h1>Hi, {userDetails.name}</h1>
+						<p>
+							{" "}
+							<b>Email:</b> {userDetails.email}
+						</p>
+						<button onClick={handleEdit}>Edit</button>
+						<span
+							style={{
+								color: "green",
+								height: ".5cm",
+								display: "block",
+								fontStyle: "italic",
+								fontSize: "12px",
+							}}
+						>
+							{changed}
+						</span>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
