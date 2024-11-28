@@ -28,7 +28,7 @@ router.post(
 			const validation = validationResult(req);
 			if (!validation.isEmpty()) {
 				return res.status(400).send({
-					error: "invalid field values",
+					error: "Invalid field values",
 				});
 			}
 
@@ -80,9 +80,9 @@ router.post(
 		try {
 			const validation = validationResult(req);
 			if (!validation.isEmpty()) {
-				logger.error("invalid credential");
+				logger.error("Invalid credential");
 				return res.status(400).send({
-					error: "invalid credential",
+					error: "Invalid credential",
 				});
 			}
 

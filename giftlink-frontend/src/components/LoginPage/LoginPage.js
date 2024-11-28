@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./LoginPage.css";
 import { camelToTitleCase } from "../../util/util";
 import { urlConfig } from "../../config";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AuthContext";
 
 function LoginPage() {
@@ -118,12 +118,12 @@ function LoginPage() {
 							</button>
 							<p className="mt-4 text-center">
 								New here?{" "}
-								<a
-									href="/app/register"
+								<Link
+									to="/app/register"
 									className="text-primary"
 								>
 									Register Here
-								</a>
+								</Link>
 							</p>
 						</div>
 					</div>
