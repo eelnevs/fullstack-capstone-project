@@ -18,6 +18,7 @@ export default function Navbar() {
 				handleLogout();
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoggedIn, setIsLoggedIn, setUserName]);
 
 	const handleLogout = () => {
