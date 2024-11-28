@@ -120,7 +120,7 @@ const Profile = () => {
 	};
 
 	return (
-		<div style={{display: "flex", flexDirection: "column"}}>
+		<div style={{ display: "flex", flexDirection: "column" }}>
 			{!!error && <div className="alert alert-error">{error}</div>}
 			<div className="container profile-container">
 				{editMode ? (

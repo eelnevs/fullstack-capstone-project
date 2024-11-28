@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { urlConfig } from "../../config";
-import "./SearchPage.css"
+import "./SearchPage.css";
 
 function SearchPage() {
 	//Task 1: Define state variables for the search query, age range, and search results.
@@ -141,7 +141,7 @@ function SearchPage() {
 									}
 									min="1"
 									max="10"
-                                    className="age-range-slider"
+									className="age-range-slider"
 								/>
 							</div>
 						</div>
@@ -171,7 +171,10 @@ function SearchPage() {
 					<div className="search-results mt-4">
 						{searchResults.length > 0 ? (
 							searchResults.map((gift) => (
-								<div key={gift.id} className="card mb-4 search-results-card">
+								<div
+									key={gift.id}
+									className="card mb-4 search-results-card"
+								>
 									<div className="image-placeholder">
 										{!gift.image ? (
 											<div className="no-image-available">

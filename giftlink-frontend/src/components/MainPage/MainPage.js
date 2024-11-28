@@ -68,7 +68,7 @@ function MainPage() {
 							<div className="card-body">
 								{/* // Task 5: Display gift name */}
 								{/* // Write your code below this line */}
-                                <h4 className="card-title">{gift.name}</h4>
+								<h4 className="card-title">{gift.name}</h4>
 								<p
 									className={`card-text ${getConditionClass(
 										gift.condition
@@ -79,7 +79,9 @@ function MainPage() {
 
 								{/* // Task 6: Display gift date */}
 								{/* // Write your code below this line */}
-                                <div className="card-text mb-2">{formatDate(gift.date_added)}</div>
+								<div className="card-text mb-2">
+									{formatDate(gift.date_added)}
+								</div>
 								<button
 									onClick={() => goToDetailsPage(gift.id)}
 									className="btn btn-primary"

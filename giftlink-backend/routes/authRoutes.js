@@ -1,3 +1,4 @@
+/*jshint esversion: 8 */
 //Step 1 - Task 2: Import necessary packages
 const dotenv = require("dotenv");
 const express = require("express");
@@ -40,11 +41,9 @@ router.post(
 				email: req.body.email,
 			});
 			if (existing) {
-				return res
-					.status(200)
-					.send({
-						error: `User email already exists, please login instead.`,
-					});
+				return res.status(200).send({
+					error: `User email already exists, please login instead.`,
+				});
 			}
 
 			const salt = await bcryptjs.genSalt(10);
@@ -148,24 +147,28 @@ router.put("/update", body("name").notEmpty(), async (req, res) => {
 		if (!email) {
 			logger.error("Email not in the request headers");
 			return res.status(400).send({
-				error: "Email not in the request headers"
-			})
+				error: "Email not in the request headers",
+			});
 		}
 		// Task 4: Connect to MongoDB
 		const db = await connectToDatabase();
 		// Task 5: find user credentials in database
-		const collection = db.collection('users');
+		const collection = db.collection("users");
 		const existingUser = await collection.findOne({ email });
 		if (!existingUser) {
 			logger.error("User not found");
 			return res.status(404).send({
-				error: "User not found"
-			})
+				error: "User not found",
+			});
 		}
 		existingUser.updatedAt = new Date();
 
 		// Task 6: update user credentials in database
-		const updatedUser = await collection.findOneAndUpdate({ email }, { $set: existingUser }, { returnDocument: 'after' })
+		const updatedUser = await collection.findOneAndUpdate(
+			{ email },
+			{ $set: existingUser },
+			{ returnDocument: "after" }
+		);
 		// Task 7: create JWT authentication using secret key from .env file
 		const authtoken = jwt.sign(
 			{ user: { id: updatedUser._id.toString() } },

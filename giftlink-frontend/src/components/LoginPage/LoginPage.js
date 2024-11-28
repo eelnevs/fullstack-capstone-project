@@ -20,9 +20,9 @@ function LoginPage() {
 	const showError = (error) => {
 		setError(error);
 		setTimeout(() => {
-			setError('');
+			setError("");
 		}, 3000);
-	}
+	};
 
 	useEffect(() => {
 		if (sessionStorage.getItem("auth-token")) {

@@ -22,9 +22,9 @@ function RegisterPage() {
 	const showError = (error) => {
 		setError(error);
 		setTimeout(() => {
-			setError('');
+			setError("");
 		}, 3000);
-	}
+	};
 
 	// insert code here to create handleRegister function and include console.log
 	const handleRegister = async () => {
