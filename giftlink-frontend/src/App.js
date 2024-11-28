@@ -8,6 +8,7 @@ import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import DetailsPage from "./components/DetailsPage/DetailsPage";
 import SearchPage from "./components/SearchPage/SearchPage";
+import Profile from "./components/Profile/Profile";
 
 function App() {
 	const navigate = useNavigate();
@@ -33,6 +34,7 @@ function App() {
 					element={<DetailsPage />}
 				/>
 				<Route path="/app/search" element={<SearchPage />} />
+				<Route path="/app/profile" element={<Profile />} />
 			</Routes>
 		</>
 	);

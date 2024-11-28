@@ -132,7 +132,7 @@ router.post(
 
 // {Insert it along with other imports} Task 1: Use the `body`,`validationResult` from `express-validator` for input validation
 
-router.put("/update", body("email").notEmpty(), async (req, res) => {
+router.put("/update", body("name").notEmpty(), async (req, res) => {
 	// Task 2: Validate the input using `validationResult` and return approiate message if there is an error.
 	const validation = validationResult(req);
 	if (!validation.isEmpty()) {
@@ -165,7 +165,7 @@ router.put("/update", body("email").notEmpty(), async (req, res) => {
 		existingUser.updatedAt = new Date();
 
 		// Task 6: update user credentials in database
-		const updatedUser = await collection.updateOne({ email }, { $set: existingUser }, { returnDocument: 'after' })
+		const updatedUser = await collection.findOneAndUpdate({ email }, { $set: existingUser }, { returnDocument: 'after' })
 		// Task 7: create JWT authentication using secret key from .env file
 		const authtoken = jwt.sign(
 			{ user: { id: updatedUser._id.toString() } },
@@ -173,6 +173,7 @@ router.put("/update", body("email").notEmpty(), async (req, res) => {
 		);
 		res.json({ authtoken });
 	} catch (e) {
+		logger.error(e);
 		return res.status(500).send("Internal server error");
 	}
 });
